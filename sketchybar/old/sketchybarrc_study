@@ -1,0 +1,176 @@
+#!/usr/bin/env sh
+
+icon_color="0xFFD8DEE9"
+label_color="0xFFD8DEE9"
+highlight_color="0xFF434C5E"
+background_color="0xFF434C5E"
+
+############## BAR ############## 
+	sketchybar -m --bar \
+		height=25 \
+		position=top \
+		padding_left=0 \
+		padding_right=0 \
+		color=0xFF5e81ac \
+		shadow=off \
+		topmost=off
+
+############## GLOBAL DEFAULTS ############## 
+	sketchybar -m --default \
+		updates=when_shown \
+		drawing=on \
+		icon.font="Hack Nerd Font:Bold:14.0" \
+		icon.color="0xFFD8DEE9" \
+		label.font="MesloLGS NF:Bold:12.0" \
+		label.color="0xFFD8DEE9" \
+		label.highlight_color="0xFF434C5E"
+
+############## SPACE DEFAULTS ############## 
+	sketchybar -m --default \
+		label.padding_left=5 \
+		label.padding_right=2 \
+		icon.padding_left=8 \
+		label.padding_right=8
+
+############## PRIMARY DISPLAY SPACES ############## 
+	#space 1: study
+	sketchybar -m --add space study left \
+		--set study icon=✎ \
+		--set study associated_display=1 \
+		--set study associated_space=1 \
+		--set study icon.padding_left=5 \
+		--set study icon.padding_right=5 \
+		--set study label.padding_right=0 \
+		--set study label.padding_left=0 \
+		--set study background.height=21 \
+		--set study background.padding_left=12 \
+		--set study click_script="yabai -m space --focus 1" \
+		--set study script="~/.config/sketchybar/study_plugins/space.sh" \
+
+	# SPACE 2: HOME ICON
+	sketchybar -m --add space home left \
+		--set home icon= \
+		--set home associated_display=1 \
+		--set home associated_space=2 \
+		--set home icon.padding_left=5 \
+		--set home icon.padding_right=5 \
+		--set home label.padding_right=0 \
+		--set home label.padding_left=0 \
+		--set home background.height=21 \
+		--set home background.padding_left=7 \
+		--set home click_script="yabai -m space --focus 2" \
+		--set home script="~/.config/sketchybar/study_plugins/space.sh" \
+	# SPACE 3: MUSIC ICON
+	sketchybar -m --add space music left \
+		--set music icon= \
+		--set music associated_display=1 \
+		--set music associated_space=3 \
+		--set music icon.padding_left=5 \
+		--set music icon.padding_right=5 \
+		--set music label.padding_right=0 \
+		--set music label.padding_left=0 \
+		--set music background.height=21 \
+		--set music background.padding_left=7 \
+		--set music click_script="yabai -m space --focus 3" \
+		--set music script="~/.config/sketchybar/study_plugins/space.sh" \
+
+	# WINDOW TITLE
+	sketchybar -m --add item title left \
+		--set title icon= \
+		--set title label.padding_left=9 \
+		--set title background.color=$background_color  \
+		--set title background.height=21 \
+		--set title background.padding_left=7 \
+		--set title script="~/.config/sketchybar/study_plugins/window_title.sh" \
+		--set title update_freq=1 \
+		--subscribe title front_app_switched space_change 
+		# --subscribe title window_focus front_app_switched space_change title_change
+
+############## ITEM DEFAULTS ###############
+	sketchybar -m --default \
+		label.padding_left=2 \
+		icon.padding_right=2 \
+		icon.padding_left=6 \
+		label.padding_right=6
+
+############## RIGHT ITEMS ############## 
+	# DATE TIME
+	sketchybar -m --add item date_time right \
+		--set date_time icon= \
+		--set date_time icon.padding_left=8 \
+		--set date_time icon.padding_right=0 \
+		--set date_time label.padding_right=9 \
+		--set date_time label.padding_left=6 \
+		--set date_time label.color=$label_color \
+		--set date_time update_freq=1 \
+		--set date_time background.color=$background_color \
+		--set date_time background.height=21 \
+		--set date_time background.padding_right=12 \
+		--set date_time script="~/.config/sketchybar/study_plugins/date_time.sh" \
+
+	sketchybar -m --add item battery right \
+    --set battery update_freq=20 \
+    --set battery script="~/.config/sketchybar/study_plugins/battery.sh" \
+    --set battery icon="" \
+    --set battery background.color=$background_color \
+    --set battery background.height=21 \
+    --set battery label.padding_right=8 \
+    --set battery label.padding_left=6 \
+    --set battery icon.padding_left=8 \
+		--set battery icon.padding_right=0 \
+    --set battery label.color=$label_color \
+    --set battery background.padding_right=7 \
+
+  sketchybar -m --add item todo right \
+    --set todo update_freq=5 \
+    --set todo icon="✓" \
+    --set todo background.color=$background_color \
+    --set todo background.height=21 \
+    --set todo label.padding_right=8 \
+    --set todo label.padding_left=6 \
+    --set todo icon.padding_left=8 \
+		--set todo icon.padding_right=0 \
+    --set todo label.color=$label_color \
+    --set todo background.padding_right=7 \
+    --set todo script="~/.config/sketchybar/study_plugins/todomain.sh" \
+
+
+
+  #study off
+  # sketchybar -m --add item sbuton right \
+		# --set sbuton icon=√ \
+		# --set sbuton icon.padding_left=8 \
+		# --set sbuton icon.padding_right=8 \
+		# --set sbuton label.padding_right=0 \
+		# --set sbuton label.padding_left=0 \
+		# --set sbuton label.color=$label_color \
+		# --set sbuton background.color=$background_color  \
+		# --set sbuton background.height=21 \
+		# --set sbuton background.padding_right=7 \
+		# --set sbuton update_freq=3 \
+		# --set sbuton click_script="python3 ~/kod/bash_scripting/b.py"
+
+	# TOP PROCESS
+	sketchybar -m --add item topproc right \
+		--set topproc drawing=off \
+		--set topproc label.padding_right=10 \
+		--set topproc update_freq=15 \
+		--set topproc script="~/.config/sketchybar/study_plugins/topproc.sh"
+
+###################### CENTER ITEMS ###################
+	# CURRENT SPOTIFY SONG
+	# Adding custom events which can listen on distributed notifications from other running processes
+	# sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged" \
+	sketchybar -m --add item spotifyIndicator center \
+		--set spotifyIndicator background.color=$background_color  \
+		--set spotifyIndicator background.height=21 \
+		--set spotifyIndicator background.padding_left=7 \
+		--set spotifyIndicator script="~/.config/sketchybar/study_plugins/spotifyIndicator.sh" \
+		--set spotifyIndicator update_freq=2 \
+		# --set spotifyIndicator click_script="osascript -e 'tell application \"Spotify\" to pause'" \
+
+############## FINALIZING THE SETUP ##############
+sketchybar -m --update
+
+echo "sketchybar configuration loaded.."
+

@@ -1,0 +1,269 @@
+#!/usr/bin/env sh
+
+icon_color="0xffbd93f9"
+label_color="0xfff8f8f2"
+highlight_color="0xff851e3e"
+background_color="0xff451e3e"
+bar_background_color="0xfff6c963"
+border_color="0xff6272a4"
+
+# bar values
+sketchybar \
+  --bar \
+    height=25 \
+    position=top \
+    margin=0 \
+    padding_left=10 \
+    padding_right=10 \
+    y_offset=10 \
+    color="0x00000000" \
+
+# global defaults
+sketchybar \
+  --default \
+    updates=when_shown \
+    drawing=on \
+    icon.font="Hack Nerd Font:Bold:14.0" \
+    label.font="MesloLGS NF:Bold:12.0" \
+
+# space 1: chat icon
+sketchybar \
+  --add space chat left \
+  --set chat \
+    icon= \
+    associated_display=1 \
+    associated_space=1 \
+    background.height=25 \
+    background.drawing=on\
+    background.color="0x00000000" \
+    background.padding_left=6 \
+    background.padding_right=3 \
+    click_script="yabai -m space --focus 1" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# space 2: code icon
+sketchybar \
+  --add space code left \
+  --set code \
+    icon= \
+    associated_display=1 \
+    associated_space=2 \
+    background.height=25 \
+    background.drawing=on \
+    background.color="0x00000000" \
+    background.padding_left=3 \
+    background.padding_right=3 \
+    click_script="yabai -m space --focus 2" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# space 3: web icon
+sketchybar \
+  --add space web left \
+  --set web \
+    icon= \
+    associated_display=1 \
+    associated_space=3 \
+    background.height=25 \
+    background.drawing=on \
+    background.color="0x00000000" \
+    background.padding_left=3 \
+    background.padding_right=3 \
+    click_script="yabai -m space --focus 3" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# space 4: home icon
+sketchybar \
+  --add space home left \
+  --set home \
+    icon= \
+    associated_display=1 \
+    associated_space=4 \
+    background.height=25 \
+    background.drawing=on \
+    background.color="0x00000000" \
+    background.padding_left=3 \
+    background.padding_right=3 \
+    click_script="yabai -m space --focus 4" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# space 5: music icon
+sketchybar \
+  --add space music left \
+  --set music \
+    icon= \
+    associated_display=1 \
+    associated_space=5 \
+    background.height=25 \
+    background.drawing=on \
+    background.color="0x00000000" \
+    background.padding_left=3 \
+    background.padding_right=3 \
+    click_script="yabai -m space --focus 5" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# space 6: other icon
+sketchybar \
+  --add space other left \
+  --set other \
+    icon= \
+    associated_display=1 \
+    associated_space=6 \
+    background.height=25 \
+    background.drawing=on \
+    background.color="0x00000000" \
+    background.padding_left=3 \
+    background.padding_right=6 \
+    click_script="yabai -m space --focus 6" \
+    script="~/.config/sketchybar/plugins/space.sh" \
+
+# add a bracket to spaces
+sketchybar \
+  --add bracket spaces chat code web home music other \
+  --set spaces \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+# app and window title
+sketchybar \
+  --add event front_app_switched space_change \
+  --add item title left \
+  --subscribe title front_app_switched \
+  --set title \
+    script="~/.config/sketchybar/plugins/window_title.sh" \
+    icon= \
+    icon.color="$icon_color" \
+    icon.padding_left=6 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    label.padding_left=3 \
+    label.padding_right=6 \
+    background.padding_left=10 \
+    background.height=25 \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+# apple music indicator
+sketchybar \
+  --add event song_update com.apple.Music.playerInfo \
+  --add item appleMusic left \
+  --subscribe appleMusic song_update \
+  --set appleMusic \
+    script="~/.config/sketchybar/plugins/appleMusic.sh" \
+    icon="" \
+    icon.color="$icon_color" \
+    icon.padding_left=6 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    label.padding_left=3 \
+    label.padding_right=6 \
+    background.height=25 \
+    background.padding_left=10 \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+# date and time
+sketchybar \
+  --add item date_time right \
+  --set date_time \
+    script="~/.config/sketchybar/plugins/date_time.sh" \
+    update_freq=1 \
+    icon= \
+    icon.color="$icon_color" \
+    icon.padding_left=6 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    label.padding_left=3 \
+    label.padding_right=6 \
+    background.padding_left=10 \
+    background.height=25 \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+# temperature
+sketchybar \
+  --add item temp right \
+  --set temp \
+    script="~/.config/sketchybar/plugins/system_values/temperature/temp.sh" \
+    update_freq=5 \
+    icon= \
+    icon.color="$icon_color" \
+    icon.padding_left=3 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    background.padding_right=6 \
+    background.color="0x00000000" \
+    background.height=25 \
+
+# battery and indicator
+sketchybar \
+  --add item battery right \
+  --set battery script="~/.config/sketchybar/plugins/system_values/battery.sh" \
+    update_freq=60 \
+    icon= \
+    icon.color="$icon_color" \
+    icon.padding_left=3 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    background.padding_right=3 \
+    background.color="0x00000000" \
+    background.height=25 \
+
+# microphone
+sketchybar \
+  --add event mouse.clicked \
+  --add item mic right \
+  --subscribe mic mouse.clicked \
+  --set mic \
+    script="~/.config/sketchybar/plugins/system_values/mic/mic.sh" \
+    click_script="~/.config/sketchybar/plugins/system_values/mic/mic_click.sh" \
+    icon.color="$icon_color" \
+    background.padding_left=6 \
+    background.padding_right=3 \
+    background.color="0x00000000" \
+    background.height=25 \
+
+# add a bracket for system values
+sketchybar \
+  --add bracket sys_values temp battery mic \
+  --set sys_values \
+    background.padding_left=10 \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+# tasks left on todoist
+sketchybar \
+  --add item todo right \
+  --set todo \
+    script="~/.config/sketchybar/plugins/todo.sh" \
+    update_freq=10 \
+    icon= \
+    icon.color="$icon_color" \
+    icon.padding_left=6 \
+    icon.padding_right=3 \
+    label.color="$label_color" \
+    label.padding_left=3 \
+    label.padding_right=6 \
+    background.padding_left=12 \
+    background.padding_right=10 \
+    background.height=25 \
+    background.color="0x00000000" \
+    background.drawing=on \
+    background.border_color="$border_color" \
+    background.border_width=3 \
+
+############## FINALIZING THE SETUP ##############
+sketchybar -m --update
+
+echo "sketchybar configuration loaded.."
+
+
