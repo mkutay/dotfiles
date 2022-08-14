@@ -40,4 +40,4 @@ if [ $PLAYING -eq 0 ]; then
   LABEL="$LABEL (NP)"
 fi
 
-sketchybar -m --set $NAME label="$LABEL"
+sketchybar -m --set $NAME drawing=on label="$LABEL"
