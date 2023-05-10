@@ -1,0 +1,9 @@
+[submodule "sketchybar"]
+	path = sketchybar
+	url = https://github.com/MKutay/sketchybar
+[submodule "skhd"]
+	path = skhd
+	url = https://github.com/MKutay/skhd
+[submodule "yabai"]
+	path = yabai
+	url = https://github.com/MKutay/yabai
