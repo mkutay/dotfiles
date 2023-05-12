@@ -7,3 +7,6 @@
 [submodule "yabai"]
 	path = yabai
 	url = https://github.com/MKutay/yabai
+[submodule "chrome"]
+	path = chrome
+	url = https://github.com/MKutay/chrome
