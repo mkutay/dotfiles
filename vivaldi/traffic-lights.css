@@ -1,4 +1,4 @@
-/* MacOS'de tabdeki trafik isiklarini kaldiran kod */
+/* remove traffic lights on tab bar */
 
 .mac #tabs-container:not(.none).top {
   padding-left: 0;
