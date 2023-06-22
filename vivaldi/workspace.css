@@ -1,0 +1,5 @@
+/*workspace'nin yanındaki aşağı ok işaretini kaldır*/
+
+span.button-toolbar-menu-indicator {
+	display: none !important;
+}
